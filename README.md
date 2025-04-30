@@ -17,7 +17,6 @@ Este es un microservicio desarrollado con NestJS para la gestión de productos.
 1. Clonar el repositorio:
 ```bash
 git clone [https://github.com/Nest-Microservices-PabloH/products-microservice.git]
-cd products-ms
 ```
 
 2. Instalar dependencias:
