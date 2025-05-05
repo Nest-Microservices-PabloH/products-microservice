@@ -8,7 +8,9 @@ import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) { }
+  constructor(
+    private readonly productsService: ProductsService
+  ) { }
 
   // @Post()
   @MessagePattern({ cmd: 'createProduct' })
@@ -28,6 +30,12 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
+  // @Delete(':id')
+  @MessagePattern({ cmd: 'deleteProduct' })
+  remove(@Payload('id', ParseIntPipe) id: number) {
+    return this.productsService.remove(id);
+  }
+
   // @Patch(':id')
   @MessagePattern({ cmd: 'updateProduct' })
   update(
@@ -36,9 +44,4 @@ export class ProductsController {
     return this.productsService.update(updateProductDto.id, updateProductDto);
   }
 
-  // @Delete(':id')
-  @MessagePattern({ cmd: 'deleteProduct' })
-  remove(@Payload('id', ParseIntPipe) id: number) {
-    return this.productsService.remove(id);
-  }
 }

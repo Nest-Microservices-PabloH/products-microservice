@@ -8,8 +8,7 @@ const envSchema = z.object({
     // NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 })
 
-// De ahí generas el tipo automáticamente:
-type envVars = z.infer<typeof envSchema>;
+
 
 // Luego haces el parsing:
 const { success, data, error } = envSchema.safeParse(process.env);
@@ -19,10 +18,7 @@ if (!success) {
     throw new Error('Config validation error.');
 }
 
-// Ahora tienes `envVars` que es del tipo `EnvVars` 
-const envVars: envVars = data;
-
 export const envs = {
-    PORT: envVars.PORT,
-    DATABASE_URL: envVars.DATABASE_URL,
+    PORT: data.PORT,
+    DATABASE_URL: data.DATABASE_URL,
 }
