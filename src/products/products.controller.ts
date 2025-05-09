@@ -44,4 +44,13 @@ export class ProductsController {
     return this.productsService.update(updateProductDto.id, updateProductDto);
   }
 
+
+  @MessagePattern({ cmd: 'validateProducts' })
+  validateProduct(
+    @Payload() ids: number[]
+  ) {
+    return this.productsService.validateProducts(ids);
+  }
+
+
 }
